@@ -79,8 +79,7 @@
     :global-prefix "C-SPC")
 
   (rune/leader-keys
-    "t"  '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")))
+    "t"  '(:ignore t :which-key "toggles")))
 
 (use-package evil
   :init
@@ -125,50 +124,84 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :init ;; NOTE: Set this to the folder where you keep your Git repos!
+  (when (file-directory-p "~/workspace")
+    (setq projectile-project-search-path '("~/workspace")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package helm-projectile)
+
+(use-package helm
+  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+  :demand t
+  :bind (("M-x" . helm-M-x)
+     ("C-s" . helm-occur)
+     ("M-y" . helm-show-kill-ring)
+     ("C-c h x" . helm-register)    ; C-x r SPC and C-x r j
+     ("C-x C-f" . helm-find-files)
+     ("C-x b" . helm-mini)      ; *<major-mode> or /<dir> or !/<dir-not-desired> or @<regexp>
+     :map helm-map
+     ("<tab>" . helm-execute-persistent-action) ; rebind tab to run persistent action
+     ("C-i" . helm-execute-persistent-action) ; make TAB works in terminal
+     ("C-z" . helm-select-action) ; list actions using C-z
+     :map shell-mode-map
+     ("C-c C-l" . helm-comint-input-ring) ; in shell mode
+     :map minibuffer-local-map
+     ("C-c C-l" . helm-minibuffer-history))
+  :init
+  (setq helm-command-prefix-key "C-c h")
+  (setq recentf-save-file "~/.emacs.d/misc/recentf" ; customize yours
+    recentf-max-saved-items 50)
+  (defun spacemacs//helm-hide-minibuffer-maybe ()
+  "Hide minibuffer in Helm session if we use the header line as input field."
+  (when (with-helm-buffer helm-echo-input-in-header-line)
+    (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+      (overlay-put ov 'window (selected-window))
+      (overlay-put ov 'face
+                   (let ((bg-color (face-background 'default nil)))
+                     `(:background ,bg-color :foreground ,bg-color)))
+      (setq-local cursor-type nil))))
+  :config
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t
+    helm-recentf-fuzzy-match    t)
+  (setq helm-semantic-fuzzy-match t
+    helm-imenu-fuzzy-match    t)
+  (setq helm-locate-fuzzy-match t)
+  (setq helm-apropos-fuzzy-match t)
+  (setq helm-lisp-fuzzy-completion t)
+  (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+(require 'helm-projectile)
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+  (require 'helm-config)
+  (setq helm-split-window-in-side-p         t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
+  (add-hook 'helm-minibuffer-set-up-hook
+        'spacemacs//helm-hide-minibuffer-maybe)
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 20)
+  (helm-autoresize-mode 1)
+  (helm-mode 1))
+
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
-
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-
-(use-package counsel
-  :bind (("C-M-j" . 'counsel-switch-buffer)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (counsel-mode 1))
-
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+(use-package helpful)
 
 (use-package hydra)
 
@@ -219,7 +252,6 @@
   (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
   ;; Bind some useful keys for evil-mode
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
   (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
   (evil-normalize-keymaps)
 
@@ -334,22 +366,9 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom (lsp-ui-doc-position 'bottom))
 
+(use-package helm-lsp)
+
 (use-package lsp-treemacs :after lsp)
-
-(use-package lsp-ivy)
-
-(use-package projectile
-  :diminish projectile-mode
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :init ;; NOTE: Set this to the folder where you keep your Git repos!
-  (when (file-directory-p "~/workspace")
-    (setq projectile-project-search-path '("~/workspace")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
 
 (use-package magit
    :custom (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -440,7 +459,8 @@
 (add-hook 'css-mode-hook 'lsp-deferred)
 (add-hook 'html-mode-hook 'lsp-deferred)
 
-(defun lsp-go-install-save-hooks()
+(use-package go-mode)
+  (defun lsp-go-install-save-hooks()
     (setq c-basic-offset 2
           c-label-offset 0
           tab-width 2
