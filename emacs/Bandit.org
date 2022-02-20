@@ -1,0 +1,67 @@
+#+title: Bandit CFT road
+
+* Level 0
+#+begin_src conf
+current_password=bandit0
+next_password=boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+#+end_src
+
+* Level 1
+#+begin_src conf
+current_password=boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+next_password=CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+#+end_src
+
+* Level 2
+#+begin_src conf
+current_password=CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+next_password=UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+#+end_src
+
+* Level 3
+#+begin_src conf
+current_password=UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+next_password=pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+#+end_src
+
+* Level 4
+#+begin_src conf
+current_password=pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+next_password=koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+#+end_src
+
+* Level 5
+#+begin_src conf
+current_password=koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+next_password=DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+#+end_src
+
+* Level 6
+#+begin_src conf
+current_password=DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+next_password=HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+#+end_src
+
+* Level 7
+#+begin_src conf
+current_password=HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+next_password=cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+#+end_src
+
+* Level 8
+#+begin_src conf
+current_password=cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+next_password=UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+#+end_src
+
+* Level 9
+#+begin_src conf
+current_password=UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+next_password=truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+#+end_src
+
+* Level 10
+#+begin_src conf
+current_password=truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+next_password=
+#+end_src
