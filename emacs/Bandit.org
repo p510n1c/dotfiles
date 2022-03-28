@@ -63,5 +63,17 @@ next_password=truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
 * Level 10
 #+begin_src conf
 current_password=truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+next_password=IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+#+end_src
+
+*  Level 11
+#+begin_src conf
+current_password=IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+next_password=5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+#+end_src
+
+*  Level 12
+#+begin_src conf
+current_password=5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
 next_password=
 #+end_src
