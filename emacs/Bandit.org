@@ -73,7 +73,82 @@ next_password=5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
 #+end_src
 
 *  Level 12
+Note: We have a hex dump file data.txt.
+Firstly we are using the xxd utillity to reverse the hexdup file  =cat data.txt | xdd -r > data=.  Going forward the second command for this task is =file data= and the result will be =gzip=. So rename the =data= to =data1.gz= and after run the =gzip -d data1.gz=. Repeat the process who start with =file= command:  =file data1= and continue ...  
+
 #+begin_src conf
 current_password=5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+next_password=8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+#+end_src
+
+*  Level 13
+Note:
+ Get the sshkey.private key and use it to login wiht bandit14. The password can be find in =/etc/bandit_pass/bandit14=
+
+#+begin_src conf
+current_password=8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+next_password=4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+#+end_src
+
+*  Level 14
+#+begin_src conf
+current_password=4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+next_password=BfMYroe26WYalil77FoDi9qh59eK5xNr
+#+end_src
+
+
+*  Level 15
+#+begin_src conf
+current_password=BfMYroe26WYalil77FoDi9qh59eK5xNr
+next_password=cluFn7wTiGryunymYOu4RcffSxQluehd
+#+end_src
+
+*  Level 16
+Note:
+With nmap find the ssl port between 31000-32000 and as repond will be a private key for next level.
+After login with bandit17 read the =/etc/bandit_pass/bandit17=
+
+#+begin_src conf
+current_password=cluFn7wTiGryunymYOu4RcffSxQluehd
+next_password=xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+#+end_src
+
+*  Level 17
+#+begin_src conf
+current_password=xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+next_password=kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+#+end_src
+
+*  Level 18
+#+begin_src conf
+current_password=kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+next_password=IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+#+end_src
+
+*  Level 19
+#+begin_src conf
+current_password=IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+next_password=GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+#+end_src
+
+*  Level 20
+Note:
+First create a listener with netcat =nc -lv -p 1056=. After that connect =./suconnect 1056=. In the listener input the current password and in the binary file will sent new one. 
+
+#+begin_src conf
+current_password=GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+next_password=gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+#+end_src
+
+*  Level 21
+#+begin_src conf
+current_password=gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+next_password=Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+#+end_src
+
+*  Level 22
+#+begin_src conf
+current_password=Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
 next_password=
 #+end_src
+
