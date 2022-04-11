@@ -116,7 +116,7 @@
 (set-face-attribute 'variable-pitch nil :font "Cantarell" :height efs/default-variable-font-size :weight 'regular)
 
 (use-package doom-themes
-  :init (load-theme 'doom-palenight t))
+  :init (load-theme 'doom-dracula t))
 
 (use-package all-the-icons)
 
@@ -345,7 +345,7 @@
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.emacs.d/Emacs.org"))
+                      (expand-file-name "/home/p510n1c/workspace/dotfiles/emacs/Emacs.org"))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))

@@ -1,5 +1,5 @@
 #+title: P510n1c Emacs Configuration File
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
 * Package System Setup
   #+begin_src emacs-lisp
@@ -225,7 +225,7 @@
 #+begin_src emacs-lisp
 
   (use-package doom-themes
-    :init (load-theme 'doom-palenight t))
+    :init (load-theme 'doom-dracula t))
 
 #+end_src
 
@@ -550,7 +550,7 @@
   ;; Automatically tangle our Emacs.org config file when we save it
   (defun efs/org-babel-tangle-config ()
     (when (string-equal (buffer-file-name)
-                        (expand-file-name "~/.emacs.d/Emacs.org"))
+                        (expand-file-name "/home/p510n1c/workspace/dotfiles/emacs/Emacs.org"))
       ;; Dynamic scoping to the rescue
       (let ((org-confirm-babel-evaluate nil))
         (org-babel-tangle))))
