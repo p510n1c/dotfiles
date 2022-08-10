@@ -207,8 +207,8 @@
 
    #+begin_src emacs-lisp
 
-     (defvar efs/default-font-size 110)
-     (defvar efs/default-variable-font-size 110)
+     (defvar efs/default-font-size 130)
+     (defvar efs/default-variable-font-size 130)
 
      (set-face-attribute 'default nil :font "Fira Code Retina" :height efs/default-font-size)
 
@@ -225,7 +225,7 @@
 #+begin_src emacs-lisp
 
   (use-package doom-themes
-    :init (load-theme 'doom-dracula t))
+    :init (load-theme 'doom-tokyo-night t))
 
 #+end_src
 
@@ -602,7 +602,6 @@
 
 #+end_src
 
-
 *** Magit
 
 #+begin_src emacs-lisp
@@ -693,7 +692,7 @@
 #+end_src
 
 ** Languages
-*** JAVA
+*** JAVa
 **** lsp
 
 #+begin_src emacs-lisp
@@ -709,8 +708,8 @@
         :init (setq lsp-java-vmargs (list "-noverify"
                                           "-Xmx3G"
                                           "-XX:+UseG1GC"
-                                          "-XX:+UseStringDeduplication"
-    "-javaagent:/home/p510n1c/.m2/repository/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar")
+                                          "-XX:+UseStringDeduplication")
+    ;; "-javaagent:/home/p510n1c/.m2/repository/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar")
     ;; Don't organise imports on save lsp-java-save-action-organize-imports nil
 
 
@@ -742,7 +741,19 @@
   (global-set-key (kbd "<f9>") 'dap-continue))
 
 #+end_src
+*** Pyhton
 
+#+begin_src emacs-lisp
+
+  (use-package python-mode
+    :ensure nil
+    :hook (python-mode . lsp-deferred)
+    :custom
+    (python-shell-interpreter "python3"))
+
+#+end_src
+
+*** Bash
 *** XML, HTML, CSS
 
 #+begin_src emacs-lisp
