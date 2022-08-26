@@ -225,7 +225,7 @@
 #+begin_src emacs-lisp
 
   (use-package doom-themes
-    :init (load-theme 'doom-tokyo-night t))
+    :init (load-theme 'doom-dracula t))
 
 #+end_src
 
@@ -741,19 +741,26 @@
   (global-set-key (kbd "<f9>") 'dap-continue))
 
 #+end_src
-*** Pyhton
+*** Python
 
 #+begin_src emacs-lisp
 
-  (use-package python-mode
-    :ensure nil
-    :hook (python-mode . lsp-deferred)
-    :custom
-    (python-shell-interpreter "python3"))
+      (use-package lsp-pyright
+        :ensure t
+        :hook (python-mode . (lambda ()
+                               (require 'lsp-pyright)
+                               (lsp))))
 
 #+end_src
 
 *** Bash
+
+#+begin_src emacs-lisp
+
+
+#+end_src
+
+
 *** XML, HTML, CSS
 
 #+begin_src emacs-lisp
