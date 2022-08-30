@@ -13,33 +13,25 @@ if not dap_install_status_ok then
   return
 end
 
-dap_install.setup ({
-  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-})
+dap_install.setup {}
+
 dap_install.config("python", {})
 -- add other configs here
 
 dapui.setup {
-    layouts = {
-    {
-      elements = {
-      -- Elements can be strings or table with id and size keys.
-        { id = "scopes", size = 0.25 },
-        "breakpoints",
-        "stacks",
-        "watches",
+  sidebar = {
+    elements = {
+      {
+        id = "scopes",
+        size = 0.25, -- Can be float or integer > 1
       },
-      size = 40, -- 40 columns
-      position = "right",
+      { id = "breakpoints", size = 0.25 },
     },
-    {
-      elements = {
-        "repl",
-        "console",
-      },
-      size = 0.25, -- 25% of total lines
-      position = "bottom",
-    },
+    size = 40,
+    position = "right", -- Can be "left", "right", "top", "bottom"
+  },
+  tray = {
+    elements = {},
   },
 }
 

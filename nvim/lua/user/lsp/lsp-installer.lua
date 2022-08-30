@@ -12,11 +12,11 @@ local servers = {
   "bashls",
   "jsonls",
   "yamlls",
+  "lemminx",
+  "jdtls",
 }
 
-lsp_installer.setup({
-	ensure_installed = servers,
-})
+lsp_installer.setup()
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
