@@ -28,6 +28,10 @@ local opts = {
     -- Don't spam us with notification every time there is an update available
     notify = false,
   },
+  rocks = {
+    -- Disable hererocks and use system luarocks instead
+    enabled = false,
+  },
 }
 
 -- Add filetype detection for .gradle files

@@ -7,10 +7,12 @@ return {
         "jdtls",
         "lua_ls",
         "terraformls", -- Terraform LSP
-        "tflint", -- Terraform linter
         "basedpyright", -- Python LSP
-        -- rust_analyzer managed by rustaceanvim plugin (uses rustup version)
         "marksman", -- Markdown LSP
+        "jsonls", -- JSON LSP
+        "yamlls", -- YAML LSP
+        "gopls", -- Go LSP
+        -- rust_analyzer managed by rustaceanvim plugin (uses rustup version)
       },
       -- Disable automatic setup since we use vim.lsp.config()
       handlers = {},
@@ -36,14 +38,27 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "stylua", -- lua formatter
+        -- Formatters
+        "stylua", -- Lua formatter
+        "prettier", -- Multi-language formatter
+        "ruff", -- Python linter and formatter
+        "black", -- Python formatter (alternative)
+        "isort", -- Python import sorting
+        -- Linters
+        "tflint", -- Terraform linter
+        "mypy", -- Python static type checker
+        "pylint", -- Python linter
+        -- Debuggers
+        "debugpy", -- Python debugger
+        "codelldb", -- Rust/C++ debugger
         "java-debug-adapter",
         "java-test",
-        "tflint", -- Terraform linter
-        "terraform-ls", -- Terraform language server (alternative name)
-        "prettier",
-        "ruff", -- Python linter and formatter
-        "codelldb", -- Rust debuger
+        -- LSPs
+        "terraform-ls",
+
+        -- Go
+        "delve", -- Go debugger
+        "goimports", -- Go import formatter
       },
     },
     dependencies = {

@@ -22,6 +22,7 @@ return {
         tf = { "terraform_fmt" },
         hcl = { "terraform_fmt" },
         python = { "ruff_format" },
+        go = { "goimports", "gofmt" },
       },
       log_level = vim.log.levels.WARN,
       format_on_save = {

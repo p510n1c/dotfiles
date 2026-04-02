@@ -9,7 +9,21 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     config = function()
-      require("lsp_signature").setup()
+      require("lsp_signature").setup({
+        bind = true,
+        handler_opts = {
+          border = "rounded",
+        },
+        hint_prefix = "󱄑 ",
+        floating_window = true,
+        toggle_key = "<C-k>", -- Manual trigger only
+        toggle_key_flip_floatwin_setting = true,
+        auto_close_after = 5, -- Auto close after 5 seconds
+        -- Reduce auto-triggering to avoid errors with problematic LSPs
+        trigger_on_newline = false,
+        always_trigger = false,
+        hint_enable = false, -- Disable virtual text hints that might cause issues
+      })
     end,
   },
   -- SPRING BOOT PLUGIN

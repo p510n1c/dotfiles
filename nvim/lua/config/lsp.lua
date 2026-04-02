@@ -1,4 +1,22 @@
 local keymap = vim.keymap -- for conciseness
+
+-- Override LSP handlers to suppress specific errors
+local handlers = {
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+    silent = true,
+  }),
+}
+
+-- Wrap the signature_help handler to suppress file not found errors
+vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+  -- Suppress error code -32098 (file not found) and -32802
+  if err and (err.code == -32098 or err.code == -32802) then
+    return
+  end
+  return vim.lsp.handlers.signature_help(err, result, ctx, config)
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
@@ -48,7 +66,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
     opts.desc = "Restart LSP"
-    keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+    keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
   end,
 })
 

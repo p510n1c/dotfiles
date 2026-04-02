@@ -50,16 +50,19 @@ return {
     }
 
     -- configure lualine with modified theme
+    local ctp_lualine = require("catppuccin.utils.lualine")
     lualine.setup({
       options = {
-        theme = my_lualine_theme,
+        -- theme = my_lualine_theme,
+        -- theme = "kanagawa",
+        theme = ctp_lualine,
       },
       sections = {
         lualine_x = {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#ff9e64" },
+            -- color = { fg = "#ff9e64" },
           },
           { "encoding" },
           { "fileformat", symbols = { unix = " " } },

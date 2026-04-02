@@ -38,3 +38,27 @@ vim.opt.swapfile = false -- creates a swapfile
 vim.opt.hlsearch = true -- highlight all matches in search
 vim.opt.ignorecase = true -- ignore case in search
 vim.opt.smartcase = true -- match case if explicitly stated
+
+-- Performance Optimizations
+vim.opt.lazyredraw = true -- Don't redraw during macros
+vim.opt.ttyfast = true -- Faster terminal connection
+
+-- Better completion experience
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.pumheight = 10 -- Limit completion menu height
+
+-- Large file handling (common in ML datasets/logs)
+vim.api.nvim_create_autocmd("BufReadPre", {
+  pattern = "*",
+  callback = function()
+    local line_count = vim.fn.line("$")
+    local file_size = vim.fn.getfsize(vim.fn.expand("%"))
+    -- Disable features for large files (>10k lines or >1MB)
+    if line_count > 10000 or file_size > 1048576 then
+      vim.opt_local.syntax = "off"
+      vim.opt_local.foldmethod = "manual"
+      vim.opt_local.swapfile = false
+      vim.notify("Large file detected - some features disabled for performance", vim.log.levels.WARN)
+    end
+  end,
+})
