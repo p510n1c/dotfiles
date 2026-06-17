@@ -11,7 +11,7 @@ return {
           light = "latte",
           dark = "mocha",
         },
-        transparent_background = false, -- setează pe true dacă vrei fundal transparent
+        transparent_background = true, -- setează pe true dacă vrei fundal transparent
         term_colors = true,
         integrations = {
           cmp = true,

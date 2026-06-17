@@ -4,7 +4,7 @@ return {
     opts = {
       -- list of servers for mason to install
       ensure_installed = {
-        "jdtls",
+        -- "jdtls",
         "lua_ls",
         "terraformls", -- Terraform LSP
         "basedpyright", -- Python LSP
@@ -15,7 +15,9 @@ return {
         -- rust_analyzer managed by rustaceanvim plugin (uses rustup version)
       },
       -- Disable automatic setup since we use vim.lsp.config()
-      handlers = {},
+      automatic_enable = {
+        exclude = { "jdtls" },
+      },
     },
     dependencies = {
       {

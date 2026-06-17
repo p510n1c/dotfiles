@@ -50,12 +50,12 @@ return {
     }
 
     -- configure lualine with modified theme
-    local ctp_lualine = require("catppuccin.utils.lualine")
+    -- local ctp_lualine = require("catppuccin.utils.lualine")
     lualine.setup({
       options = {
-        -- theme = my_lualine_theme,
+        theme = my_lualine_theme,
         -- theme = "kanagawa",
-        theme = ctp_lualine,
+        -- theme = ctp_lualine,
       },
       sections = {
         lualine_x = {

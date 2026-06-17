@@ -23,6 +23,7 @@ return {
         hcl = { "terraform_fmt" },
         python = { "ruff_format" },
         go = { "goimports", "gofmt" },
+        -- java = { "google-java-format" },
       },
       log_level = vim.log.levels.WARN,
       format_on_save = {
@@ -32,7 +33,7 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+    vim.keymap.set({ "n", "v" }, "<leader>caf", function()
       conform.format({
         lsp_fallback = true,
         async = false,

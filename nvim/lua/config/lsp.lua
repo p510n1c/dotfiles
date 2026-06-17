@@ -1,20 +1,32 @@
 local keymap = vim.keymap -- for conciseness
 
 -- Override LSP handlers to suppress specific errors
-local handlers = {
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-    silent = true,
-  }),
-}
-
--- Wrap the signature_help handler to suppress file not found errors
 vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
-  -- Suppress error code -32098 (file not found) and -32802
   if err and (err.code == -32098 or err.code == -32802) then
     return
   end
-  return vim.lsp.handlers.signature_help(err, result, ctx, config)
+
+  if err or not result or not result.signatures or not result.signatures[1] then
+    return
+  end
+
+  config = config or {}
+  config.border = config.border or "rounded"
+  config.silent = true
+  config.focus_id = config.focus_id or ctx.method
+
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local bufnr = ctx.bufnr or 0
+  local ft = vim.bo[bufnr].filetype
+  local enc = (client and client.offset_encoding) or "utf-16"
+
+  local lines = vim.lsp.util.convert_input_to_markdown_lines(result, ft, { enc })
+  lines = vim.lsp.util.trimempty(lines)
+  if not lines or vim.tbl_isempty(lines) then
+    return
+  end
+
+  return vim.lsp.util.open_floating_preview(lines, "markdown", config)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
