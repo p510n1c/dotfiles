@@ -1,63 +1,63 @@
 -- CATPPUCCIN MOCHA
-return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000, -- Asigură-te că tema se încarcă înaintea altor pluginuri
-    config = function()
-      require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = {
-          light = "latte",
-          dark = "mocha",
-        },
-        transparent_background = true, -- setează pe true dacă vrei fundal transparent
-        term_colors = true,
-        integrations = {
-          cmp = true,
-          gitsigns = true,
-          nvimtree = true,
-          treesitter = true,
-          notify = true,
-          mini = {
-            enabled = true,
-            indentscope_color = "",
-          },
-        },
-      })
-
-      -- Activează tema imediat după configurare
-      vim.cmd.colorscheme("catppuccin")
-    end,
-  },
-}
-
 -- return {
---   "rebelot/kanagawa.nvim",
---   config = function()
---     require("kanagawa").setup({
---       compile = false, -- enable compiling the colorscheme
---       undercurl = true, -- enable undercurls
---       commentStyle = { italic = true },
---       functionStyle = {},
---       keywordStyle = { italic = true },
---       statementStyle = { bold = true },
---       typeStyle = {},
---       dimInactive = false, -- dim inactive window `:h hl-NormalNC`
---       terminalColors = true,
---       transparent = true,
---       theme = "dragon",
---       background = {
---         dark = "wave", -- try "dragon" !
---         light = "lotus",
---       },
---       on_highlights = function(hl, c)
---         hl["@variable.go"] = { fg = c.dragonBlue }
---       end,
---     })
---     vim.cmd("colorscheme kanagawa")
---   end,
+--   {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     priority = 1000, -- Asigură-te că tema se încarcă înaintea altor pluginuri
+--     config = function()
+--       require("catppuccin").setup({
+--         flavour = "mocha", -- latte, frappe, macchiato, mocha
+--         background = {
+--           light = "latte",
+--           dark = "mocha",
+--         },
+--         transparent_background = true, -- setează pe true dacă vrei fundal transparent
+--         term_colors = true,
+--         integrations = {
+--           cmp = true,
+--           gitsigns = true,
+--           nvimtree = true,
+--           treesitter = true,
+--           notify = true,
+--           mini = {
+--             enabled = true,
+--             indentscope_color = "",
+--           },
+--         },
+--       })
+--
+--       -- Activează tema imediat după configurare
+--       vim.cmd.colorscheme("catppuccin")
+--     end,
+--   },
 -- }
+
+return {
+  "rebelot/kanagawa.nvim",
+  config = function()
+    require("kanagawa").setup({
+      compile = false, -- enable compiling the colorscheme
+      undercurl = true, -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true,
+      transparent = true,
+      theme = "dragon",
+      background = {
+        dark = "wave", -- try "dragon" !
+        light = "lotus",
+      },
+      on_highlights = function(hl, c)
+        hl["@variable.go"] = { fg = c.dragonBlue }
+      end,
+    })
+    vim.cmd("colorscheme kanagawa")
+  end,
+}
 --
 --
 -- return {

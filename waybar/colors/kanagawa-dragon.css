@@ -1,0 +1,26 @@
+/* Kanagawa Dragon - Tiered Variables */
+
+/* Background Scale (Dark to Light) */
+@define-color bg0 #121216; /* Sumi Ink 1 - Deepest background (e.g., status bars) */
+@define-color bg1 #1c1c24; /* Sumi Ink 2 - Main window background */
+@define-color bg2 #2d2d39; /* Sumi Ink 3 - Card/Widget backgrounds */
+@define-color bg3 #363646; /* Sumi Ink 4 - Hover states / Active selections */
+@define-color bg4 #54546d; /* Sumi Ink 5 - Visual borders / Inactive panels */
+
+/* Foreground Scale (Text Clarity) */
+@define-color fg  #c5c9c5; /* Dragon White - Main readable text */
+@define-color fg0 #e6e6e6; /* Bright White - Bold headers / Critical alerts */
+@define-color fg1 #a6a6a6; /* Dim White - Muted context text */
+
+/* Gray Scale (Neutral Accents) */
+@define-color gray0 #444454; /* Dark Gray - Clean delimiters / Subtle separators */
+@define-color gray1 #5e5e75; /* Medium Gray - Placeholders / Disabled text */
+@define-color gray2 #7a7a94; /* Light Gray - Tooltips / Inactive toggles */
+
+/* Official Accent Highlights */
+@define-color red     #c4746e; /* Autumn Red */
+@define-color orange  #b6927b; /* Dragon Orange */
+@define-color yellow  #c4b28a; /* Carp Yellow */
+@define-color green   #8a9a7b; /* Autumn Green */
+@define-color blue    #658594; /* Dragon Blue */
+@define-color violet  #957fb8; /* Oni Violet */
