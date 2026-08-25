@@ -53,8 +53,8 @@ return {
     -- local ctp_lualine = require("catppuccin.utils.lualine")
     lualine.setup({
       options = {
-        -- theme = my_lualine_theme,
-        theme = "kanagawa",
+        theme = my_lualine_theme,
+        -- theme = "kanagawa",
         -- theme = ctp_lualine,
       },
       sections = {

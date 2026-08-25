@@ -14,4 +14,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-
+-- Setup Python save refresh files
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.py",
+  callback = function()
+    local clients = vim.lsp.get_clients({ naem = "basedpyright" })
+    for _, client in ipairs(clients) do
+      client:notify("workspace/didChangeWatchedFiles", {
+        changes = {
+          {
+            uri = vim.uri_from_bufnr(0),
+            type = 2,
+          },
+        },
+      })
+    end
+  end,
+})
